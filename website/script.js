@@ -1,29 +1,50 @@
+// Highlight active nav link based on current page URL
 document.addEventListener("DOMContentLoaded", () => {
-  const getStartedBtn = document.getElementById("getStartedBtn");
-  const contactForm = document.getElementById("contactForm");
-  const formMessage = document.getElementById("formMessage");
+  const currentPath = window.location.pathname.split("/").pop();
+  const navLinks = document.querySelectorAll("nav ul li a");
 
-  if (getStartedBtn) {
-    getStartedBtn.addEventListener("click", () => {
-      alert("Thank you for getting started! Learn more on our Services page.");
-    });
-  }
-
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const message = document.getElementById("message").value.trim();
-
-      if (name && email && message) {
-        formMessage.style.color = "green";
-        formMessage.textContent = `Thank you, ${name}! We'll contact you soon.`;
-        contactForm.reset();
-      } else {
-        formMessage.style.color = "red";
-        formMessage.textContent = "Please fill out all fields.";
-      }
-    });
-  }
+  navLinks.forEach(link => {
+    if (link.getAttribute("href") === currentPath) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
 });
+
+// Simple contact form validation (to be used in contact.html)
+function validateContactForm(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name");
+  const email = document.getElementById("email");
+  const message = document.getElementById("message");
+
+  if (!name.value.trim()) {
+    alert("Please enter your name.");
+    name.focus();
+    return false;
+  }
+
+  if (!email.value.trim() || !validateEmail(email.value)) {
+    alert("Please enter a valid email address.");
+    email.focus();
+    return false;
+  }
+
+  if (!message.value.trim()) {
+    alert("Please enter your message.");
+    message.focus();
+    return false;
+  }
+
+  alert("Thank you for contacting us! We will get back to you soon.");
+  document.getElementById("contact-form").reset();
+  return true;
+}
+
+function validateEmail(email) {
+  // Simple regex for email validation
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+}
