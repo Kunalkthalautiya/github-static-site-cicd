@@ -1,5 +1,8 @@
 name: Deploy Static Site to GitHub Pages
 
+permissions:
+  contents: write
+
 on:
   push:
     branches:
@@ -8,21 +11,12 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js (optional, if tools needed)
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
+      - uses: actions/checkout@v3
       - name: Copy website to output folder
         run: |
           mkdir -p public
           cp -r website/* public/
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
