@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us | AutoPilot AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">AutoPilot<span>AI</span></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="agent.html">Agent</a></li>
+        <li><a href="usecases.html">Use Cases</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="contact-section">
+    <div class="container">
+      <h1>Contact AutoPilot AI</h1>
+      <p>Have questions or want to get started? Send us a message!</p>
+
+      <form id="contact-form" onsubmit="validateContactForm(event)" novalidate>
+        <label for="name">Name:</label><br/>
+        <input type="text" id="name" name="name" placeholder="Your Name" required /><br/><br/>
+
+        <label for="email">Email:</label><br/>
+        <input type="email" id="email" name="email" placeholder="your.email@example.com" required /><br/><br/>
+
+        <label for="message">Message:</label><br/>
+        <textarea id="message" name="message" rows="5" placeholder="Your message here..." required></textarea><br/><br/>
+
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 AutoPilot AI. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
