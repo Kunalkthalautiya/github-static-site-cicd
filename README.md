@@ -1,0 +1,1 @@
+# github-static-site-cicd
